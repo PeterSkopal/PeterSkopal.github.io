@@ -1,6 +1,6 @@
-/*
-* Create variables used in the game
-*/
+/**
+ * Create variables used in the game
+ */
 var config = {
         yellowPlayerName: "Player 1",
         redPlayerName: "Player 2",
@@ -11,11 +11,11 @@ var config = {
         winPrefix: "The winner is: ",
         countToWin: 4,
     };
-/*
-* Define the empty board as a two-dimensional array, full of zeros. In our
-* game, 0 represents empty, 'red' represents a red disc, and 'yellow' represents
-* a yellow disc.
-*/
+/**
+ * Define the empty board as a two-dimensional array, full of zeros. In our
+ * game, 0 represents empty, 'red' represents a red disc, and 'yellow' represents
+ * a yellow disc.
+ */
 var board = [[0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0],
@@ -23,7 +23,7 @@ var board = [[0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0],
              [0,0,0,0,0,0,0]];
 
-/*
-* Sets the starting player
-*/
+/**
+ * Sets the starting player
+ */
 var currentPlayer = config.startingPlayer;

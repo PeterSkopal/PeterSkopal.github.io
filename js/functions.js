@@ -1,16 +1,16 @@
 /**
  * A function for adding a disc to our Connect Four board.
  *
- * @param string color The color of the current player.
- * @param int x_pos The x-position of the location chosen.
- * @param int y_pos The y-position of the location chosen.
+ * @param string color, The color of the current player.
+ * @param int x_pos, The x-position of the location chosen.
+ * @param int y_pos, The y-position of the location chosen.
  */
 function addDiscToBoard(color, x_pos, y_pos) {
     board[y_pos][x_pos] = color;
 }
 
 /**
- * Print the contents of our `board` variable to the html page.
+ * Print the contents of the `board` variable to the html page.
  */
 function printBoard() {
     // Loop through the board, and add classes to each cell for the
@@ -35,7 +35,6 @@ function changePlayer() {
     } else {
         currentPlayer = 'yellow';
     }
-
     // Update the UI.
     $('#player').removeClass().addClass(currentPlayer).text(config[currentPlayer + "PlayerName"]);
 }
@@ -44,8 +43,8 @@ function changePlayer() {
  * If there are empty positions below the one disc chosen, return the new y-position
  * we should drop the piece to.
  *
- * @param int x_pos The x-position of the location chosen.
- * @param int y_pos The y-position of the location chosen.
+ * @param int x_pos, The x-position of the location chosen.
+ * @param int y_pos, The y-position of the location chosen.
  * @return bool returns true or false for the question "Is this at the bottom?".
  */
 function dropToBottom(x_pos, y_pos) {
@@ -56,20 +55,18 @@ function dropToBottom(x_pos, y_pos) {
             return y;
         }
     }
-
     return y_pos;
 }
 
 /**
  * Test to ensure the chosen location isn't taken.
  *
- * @param int x_pos The x-position of the location chosen.
- * @param int y_pos The y-position of the location chosen.
+ * @param int x_pos, The x-position of the location chosen.
+ * @param int y_pos, The y-position of the location chosen.
  * @return bool returns true or false for the question "Is this spot taken?".
  */
 function positionIsTaken(x_pos, y_pos) {
     var value = board[y_pos][x_pos];
-
     return value === 0 ? false : true;
 }
 
@@ -86,7 +83,6 @@ function gameIsDraw() {
             }
         }
     }
-
     // No locations were empty. Return true to indicate that the game is a draw.
     return true;
 }
@@ -100,7 +96,6 @@ function horizontalWin() {
     var currentValue = null,
         previousValue = 0,
         tally = 0;
-
     // Scan each row in series, tallying the length of each series. If a series
     // ever reaches four, return true for a win.
     for (var y = 0; y <= 5; y++) {
@@ -117,12 +112,10 @@ function horizontalWin() {
             }
             previousValue = currentValue;
         }
-
         // After each row, reset the tally and previous value.
         tally = 0;
         previousValue = 0;
     }
-
     // No horizontal win was found.
     return false;
 }
@@ -136,7 +129,6 @@ function verticalWin() {
     var currentValue = null,
         previousValue = 0,
         tally = 0;
-
     // Scan each column in series, tallying the length of each series. If a
     // series ever reaches four, return true for a win.
     for (var x = 0; x <= 6; x++) {
@@ -153,12 +145,10 @@ function verticalWin() {
             }
             previousValue = currentValue;
         }
-
         // After each column, reset the tally and previous value.
         tally = 0;
         previousValue = 0;
     }
-
     // No vertical win was found.
     return false;
 }
@@ -176,12 +166,10 @@ function diagonalWin() {
         currentValue = null,
         previousValue = 0,
         tally = 0;
-
     // Test for down-right diagonals across the top.
     for (x = 0; x <= 6; x++) {
         xtemp = x;
         ytemp = 0;
-
         while (xtemp <= 6 && ytemp <= 5) {
             currentValue = board[ytemp][xtemp];
             if (currentValue === previousValue && currentValue !== 0) {
@@ -194,7 +182,6 @@ function diagonalWin() {
                 return true;
             }
             previousValue = currentValue;
-
             // Shift down-right one diagonal index.
             xtemp++;
             ytemp++;
@@ -208,7 +195,6 @@ function diagonalWin() {
     for (x = 0; x <= 6; x++) {
         xtemp = x;
         ytemp = 0;
-
         while (0 <= xtemp && ytemp <= 5) {
             currentValue = board[ytemp][xtemp];
             if (currentValue === previousValue && currentValue !== 0) {
@@ -221,7 +207,6 @@ function diagonalWin() {
                 return true;
             }
             previousValue = currentValue;
-
             // Shift down-left one diagonal index.
             xtemp--;
             ytemp++;
@@ -235,7 +220,6 @@ function diagonalWin() {
     for (y = 0; y <= 5; y++) {
         xtemp = 0;
         ytemp = y;
-
         while (xtemp <= 6 && ytemp <= 5) {
             currentValue = board[ytemp][xtemp];
             if (currentValue === previousValue && currentValue !== 0) {
@@ -248,7 +232,6 @@ function diagonalWin() {
                 return true;
             }
             previousValue = currentValue;
-
             // Shift down-right one diagonal index.
             xtemp++;
             ytemp++;
@@ -262,7 +245,6 @@ function diagonalWin() {
     for (y = 0; y <= 5; y++) {
         xtemp = 6;
         ytemp = y;
-
         while (0 <= xtemp && ytemp <= 5) {
             currentValue = board[ytemp][xtemp];
             if (currentValue === previousValue && currentValue !== 0) {
@@ -275,7 +257,6 @@ function diagonalWin() {
                 return true;
             }
             previousValue = currentValue;
-
             // Shift down-left one diagonal index.
             xtemp--;
             ytemp++;
@@ -284,7 +265,6 @@ function diagonalWin() {
         tally = 0;
         previousValue = 0;
     }
-
     // No diagonal wins found. Return false.
     return false;
 }
@@ -360,7 +340,7 @@ function addScore(player_name) {
  /**
   * Appends data to the localStorage, specifically made for the auditLog in this case.
   *
-  * @param String data, the new input
+  * @param String data, the new input for the auditLog
   */
   function appendToAuditLog(data) {
     var oldData = localStorage.getItem('auditLog');
